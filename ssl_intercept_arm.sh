@@ -4,9 +4,8 @@
 # sudo ./ssl_intercept.sh
 #
 # /usr/lib/libssl.so.3 for other!
-# ARM64 / RPI 
-#
-SO_PATH="/usr/lib/libssl.so.3" 
+
+SO_PATH="/lib/aarch64-linux-gnu/libssl.so.3" # ARM64 / RPI OPENSSL
 
 bpftrace -e "
 uprobe:${SO_PATH}:SSL_write_ex

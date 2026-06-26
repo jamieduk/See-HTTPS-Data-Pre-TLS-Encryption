@@ -1,14 +1,18 @@
 How Attackers See HTTPS Data Before TLS Encryption
 
+https://github.com/jamieduk/See-HTTPS-Data-Pre-TLS-Encryption
 
+jnetai.com
 
-https://www.youtube.com/watch?v=n9BD4YxiWqM
+Inspired by https://www.youtube.com/watch?v=n9BD4YxiWqM
 
 sudo chmod +x *.sh
 
 ./setup.sh
 
 ./ssl_intercept.sh
+
+./ssl_intercept_arm.sh
 
 ./secure_app_start.sh
 
@@ -50,17 +54,6 @@ ldconfig -p | grep libssl
 	libssl.so.3 (libc6,AArch64) => /lib/aarch64-linux-gnu/libssl.so.3
 	libssl.so.3 (libc6,hard-float) => /lib/arm-linux-gnueabihf/libssl.so.3
 	libssl.so (libc6,AArch64) => /lib/aarch64-linux-gnu/libssl.so
-
-
-
-
-
-
-
-
-
-
-
 
 
 
