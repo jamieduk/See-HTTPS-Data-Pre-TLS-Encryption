@@ -1,0 +1,67 @@
+How Attackers See HTTPS Data Before TLS Encryption
+
+
+
+https://www.youtube.com/watch?v=n9BD4YxiWqM
+
+sudo chmod +x *.sh
+
+./setup.sh
+
+./ssl_intercept.sh
+
+./secure_app_start.sh
+
+./login_start.sh
+
+
+
+
+# Manual Setup
+sudo apt install -y bpftrace
+
+bpftrace -e 'uprobe:/path/to/libssl.so:SSL_write_ex { printf("PID %d: %s\n", pid, str(arg1, arg2)); }'
+
+
+you can use the following like in the yt video
+
+
+secure_app.py
+login.py
+
+
+How to test:
+Generate certificates: openssl req -new -x509 -days 365 -nodes -out cert.pem -keyout key.pem
+Run the sniffer: Use the bpftrace command shown in the video (3:02) to hook SSL_write_ex.
+Run the server: python3 secure_app.py
+Run the client: python3 login.py
+The bpftrace tool will display the plain-text user:mysecretpassword before the TLS encryption wraps it for network transmission.
+
+
+
+Notes on ssl_intercept.sh
+
+Find the real .so path
+
+ldconfig -p | grep libssl
+
+	libssl3.so (libc6,AArch64) => /lib/aarch64-linux-gnu/libssl3.so
+	libssl3.so (libc6,hard-float) => /lib/arm-linux-gnueabihf/libssl3.so
+	libssl.so.3 (libc6,AArch64) => /lib/aarch64-linux-gnu/libssl.so.3
+	libssl.so.3 (libc6,hard-float) => /lib/arm-linux-gnueabihf/libssl.so.3
+	libssl.so (libc6,AArch64) => /lib/aarch64-linux-gnu/libssl.so
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
